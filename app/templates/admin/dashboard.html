@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Sunshine Coast Psychology Clinic{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1>Admin Dashboard</h1>
+        <p class="lead">Welcome, {{ session.get('user_name') }}. Manage your clinic's triage system here.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Clinician Database</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-3">
+                    <i class="fas fa-database fa-4x text-primary"></i>
+                </div>
+                <h6>Status: {% if clinicians_exist %}<span class="text-success">Available</span>{% else %}<span class="text-danger">Not Available</span>{% endif %}</h6>
+                <p>Clinicians: {{ clinician_count }}</p>
+                <p>Last Updated: {{ last_updated }}</p>
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('admin.upload_spreadsheet') }}" class="btn btn-primary w-100">Upload Spreadsheet</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Manage Clinicians</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-3">
+                    <i class="fas fa-user-md fa-4x text-success"></i>
+                </div>
+                <p>Update clinician availability and manage their details.</p>
+                <p>Set individual clinician status and availability dates.</p>
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('admin.manage_clinicians') }}" class="btn btn-success w-100">Manage Clinicians</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Triage Tool</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-3">
+                    <i class="fas fa-search fa-4x text-info"></i>
+                </div>
+                <p>Access the triage tool to match clients with suitable clinicians.</p>
+                <p>Search based on age, presentation, funding, and location.</p>
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('triage.index') }}" class="btn btn-info w-100 text-white">Go to Triage Tool</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Error {{ error_code }} - Sunshine Coast Psychology Clinic{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <div class="card shadow">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">Error {{ error_code }}</h4>
+            </div>
+            <div class="card-body">
+                <i class="fas fa-exclamation-triangle fa-5x text-danger mb-4"></i>
+                <h2>{{ error_message }}</h2>
+                <p class="lead mt-3">Something went wrong. Please try again or contact support if the problem persists.</p>
+                <div class="mt-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

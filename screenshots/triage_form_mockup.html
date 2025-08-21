@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triage Tool - Sunshine Coast Psychology Clinic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <style>
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding-top: 20px;
+        }
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="logo_placeholder.jpg" alt="Sunshine Coast Psychology Clinic" height="50">
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Admin Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Manage Clinicians</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Triage Tool</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Logout (Admin)</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="container my-4">
+        <div class="row mb-4">
+            <div class="col">
+                <h1>Triage Tool</h1>
+                <p class="lead">Find suitable clinicians based on client needs.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Client Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="post" id="triageForm">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="age_group" class="form-label">Age Group</label>
+                                    <select class="form-select" id="age_group" name="age_group" required>
+                                        <option value="" selected disabled>Select age group</option>
+                                        <option value="age_0_6">0-6 years</option>
+                                        <option value="age_6_12">6-12 years</option>
+                                        <option value="age_12_18">12-18 years</option>
+                                        <option value="age_18_plus">18+ years</option>
+                                        <option value="age_70_plus">70+ years</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="presentation" class="form-label">Presentation</label>
+                                    <input type="text" class="form-control" id="presentation" name="presentation" placeholder="Type to search..." required autocomplete="off">
+                                    <div class="form-text">Start typing to see suggestions</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="funding_source" class="form-label">Funding Source</label>
+                                    <select class="form-select" id="funding_source" name="funding_source" required>
+                                        <option value="" selected disabled>Select funding source</option>
+                                        <option value="mhcp">MHCP</option>
+                                        <option value="ndis">NDIS</option>
+                                        <option value="dva">DVA</option>
+                                        <option value="wc">Workers Compensation</option>
+                                        <option value="qps">QPS</option>
+                                        <option value="eap">EAP</option>
+                                        <option value="private">Private</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="location" class="form-label">Location</label>
+                                    <select class="form-select" id="location" name="location" required>
+                                        <option value="" selected disabled>Select location</option>
+                                        <option value="Maroochydore">Maroochydore</option>
+                                        <option value="Sippy Downs">Sippy Downs</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Find Matching Clinicians</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card shadow">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">Instructions</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6><i class="fas fa-info-circle"></i> How to Use</h6>
+                        <ol>
+                            <li>Select the client's age group</li>
+                            <li>Enter the primary presentation (start typing to see suggestions)</li>
+                            <li>Select the funding source</li>
+                            <li>Choose the preferred location</li>
+                            <li>Click "Find Matching Clinicians" to see results</li>
+                        </ol>
+                        
+                        <div class="alert alert-warning mt-3">
+                            <h6><i class="fas fa-exclamation-triangle"></i> Note</h6>
+                            <p>All fields are required to find matching clinicians.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="bg-light py-3 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2025 Sunshine Coast Psychology Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+

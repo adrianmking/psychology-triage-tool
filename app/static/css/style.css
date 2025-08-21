@@ -1,0 +1,449 @@
+/* 
+ * Psychology Clinic Triage Tool
+ * Custom CSS Styles with Pastel Color Scheme
+ */
+
+:root {
+    --primary-color: #4DD6C1; /* Turquoise for buttons and accents */
+    --primary-light: #B5E2D7; /* Light mint for backgrounds */
+    --primary-dark: #3AA996; /* Darker turquoise for hover states */
+    --text-dark: #333333; /* Dark text for readability */
+    --text-muted: #666666; /* Muted text for secondary information */
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --border-color: #dddddd;
+    --success: #4DD6C1; /* Using primary color for success */
+    --warning: #FFD166; /* Soft yellow for warnings */
+    --danger: #ff5a5a; /* Soft red for errors/danger */
+    --info: #73D2DE; /* Light blue for info */
+}
+
+/* General Styles */
+body {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--primary-light);
+    color: var(--text-dark);
+    padding: 20px;
+}
+
+/* Header Styles */
+.header-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.simplified-logo {
+    display: flex;
+    align-items: center;
+}
+
+.clinic-logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.header-text {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.user-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.menu-link {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.menu-link:hover {
+    color: var(--primary-color);
+}
+
+/* Card Styles */
+.content-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Form Styles */
+.form-label {
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    background-color: var(--white);
+    height: auto;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(77, 214, 193, 0.25);
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.btn-lg {
+    padding: 15px 20px;
+    font-size: 1.1rem;
+}
+
+/* Login Page Styles */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.login-logo {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.login-title {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.login-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-dot {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #777;
+    border-radius: 50%;
+}
+
+.login-footer {
+    font-size: 0.85rem;
+    color: #777;
+    text-align: center;
+    margin-top: 30px;
+    line-height: 1.5;
+}
+
+/* Clinician Management Styles */
+.location-group {
+    margin-bottom: 30px;
+}
+
+.location-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.clinician-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.clinician-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.clinician-item:last-child {
+    border-bottom: none;
+}
+
+.clinician-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.clinician-name {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.clinician-profession {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.clinician-availability {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.availability-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-picker-container {
+    margin-top: 10px;
+}
+
+/* Triage Form Styles */
+.triage-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Autocomplete Styles */
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 9999 !important;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 5px 0;
+    background-color: var(--white);
+}
+
+.ui-menu-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ui-menu-item:last-child {
+    border-bottom: none;
+}
+
+.ui-menu-item:hover {
+    background-color: var(--primary-light);
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 8px;
+    border: none;
+    padding: 15px;
+}
+
+/* Search Results Styles */
+.clinician-result {
+    margin-bottom: 15px;
+    transition: transform 0.2s;
+}
+
+.clinician-result:hover {
+    transform: translateY(-3px);
+}
+
+.clinician-result-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clinician-result-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.clinician-location {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.status-available {
+    background-color: rgba(77, 214, 193, 0.2);
+    color: var(--primary-dark);
+}
+
+.status-waitlist {
+    background-color: rgba(255, 209, 102, 0.2);
+    color: #856404;
+}
+
+.status-closed {
+    background-color: rgba(108, 117, 125, 0.2);
+    color: #495057;
+}
+
+.match-percentage {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.waitlist-date {
+    font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header-card {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .user-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .content-card {
+        padding: 20px;
+    }
+    
+    .clinician-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .clinician-availability {
+        width: 100%;
+    }
+}
+
+
+/* Additional Clinician Details Styles */
+.clinician-details {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-color);
+    font-size: 0.9rem;
+}
+
+.clinician-details p {
+    margin-bottom: 5px;
+}
+
+/* Book Now Button Styles */
+.book-now-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.btn-book-now {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.btn-book-now:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive adjustments for new elements */
+@media (max-width: 768px) {
+    .clinician-result-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .clinician-status {
+        margin-top: 15px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .book-now-container {
+        width: 100%;
+    }
+}
+

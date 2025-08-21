@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Clinicians - Triage Tool{% endblock %}
+
+{% block content %}
+<div class="content-card">
+    <h1 class="card-title">Manage Clinician Availability</h1>
+    
+    {% if not locations %}
+    <div class="alert alert-warning">
+        <p>No clinician data is available. Please upload a spreadsheet first.</p>
+        <a href="{{ url_for('admin.upload_spreadsheet') }}" class="btn btn-primary">Upload Spreadsheet</a>
+    </div>
+    {% else %}
+        {% for location_name, location_clinicians in locations %}
+        <div class="location-group">
+            <h2 class="location-title">{{ location_name }}</h2>
+            <div class="clinician-list">
+                {% for clinician in location_clinicians %}
+                <div class="clinician-item">
+                    <div class="clinician-info">
+                        <div class="clinician-name">{{ clinician.clinician_name }}</div>
+                        <div class="clinician-profession">{{ clinician.profession }}</div>
+                    </div>
+                    <div class="clinician-availability">
+                        <form action="{{ url_for('admin.update_clinician') }}" method="post" class="availability-form">
+                            <input type="hidden" name="clinician_name" value="{{ clinician.clinician_name }}">
+                            <select name="availability_status" class="form-select availability-status" data-clinician-id="{{ loop.index }}">
+                                <option value="Available" {% if clinician.availability_status == 'Available' %}selected{% endif %}>Available</option>
+                                <option value="Waitlist" {% if clinician.availability_status == 'Waitlist' %}selected{% endif %}>Waitlist</option>
+                                <option value="Unavailable" {% if clinician.availability_status == 'Unavailable' %}selected{% endif %}>Closed</option>
+                            </select>
+                            
+                            <div class="date-picker-container" {% if clinician.availability_status != 'Waitlist' %}style="display: none;"{% endif %}>
+                                <input type="date" name="available_from_date" class="form-control date-picker" value="{{ clinician.available_from_date }}">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Show/hide date picker based on availability status
+        $('.availability-status').change(function() {
+            const datePickerContainer = $(this).closest('.clinician-availability').find('.date-picker-container');
+            const form = $(this).closest('form');
+            
+            if ($(this).val() === 'Waitlist') {
+                datePickerContainer.show();
+            } else {
+                datePickerContainer.hide();
+                // Auto-submit the form when status changes to something other than Waitlist
+                form.submit();
+            }
+        });
+        
+        // Auto-submit when date changes
+        $('.date-picker').change(function() {
+            $(this).closest('form').submit();
+        });
+    });
+</script>
+{% endblock %}
+

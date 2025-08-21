@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results - Triage Tool{% endblock %}
+
+{% block content %}
+{% if not matches %}
+<div class="content-card">
+    <h1 class="card-title">No Matching Clinicians</h1>
+    <p class="text-center">No clinicians match your search criteria.</p>
+    <div class="mt-4 text-center">
+        <a href="{{ url_for('triage.index') }}" class="btn btn-primary">New Search</a>
+    </div>
+</div>
+{% else %}
+<div class="search-criteria content-card mb-4">
+    <h1 class="card-title">Search Results</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <p><strong>Age Group:</strong> {{ age_group }}</p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>Presentation:</strong> {{ presentation }}</p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>Funding Source:</strong> {{ funding_source }}</p>
+        </div>
+        <div class="col-md-3">
+            <p><strong>Location:</strong> {{ location }}</p>
+        </div>
+    </div>
+</div>
+
+{% for match in matches %}
+<div class="content-card clinician-result">
+    <div class="clinician-result-content">
+        <div class="clinician-result-info">
+            <h2 class="clinician-name">{{ match.name }}</h2>
+            <p class="clinician-profession">{{ match.profession }}</p>
+            <p class="clinician-location">{{ match.location }}</p>
+            
+            <!-- Additional clinician details -->
+            <div class="clinician-details">
+                {% if match.gender %}
+                <p><strong>Gender:</strong> {{ match.gender }}</p>
+                {% endif %}
+                
+                {% if match.service_type and match.service_type != 'Unknown' %}
+                <p><strong>Service Type:</strong> {{ match.service_type }}</p>
+                {% endif %}
+                
+                {% if match.notes %}
+                <p><strong>Notes:</strong> {{ match.notes }}</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="clinician-status">
+            {% if match.availability_status == 'Available' %}
+            <span class="status-badge status-available">Available</span>
+            <div class="match-percentage">{{ match.match_percentage }}%</div>
+            {% elif match.availability_status == 'Waitlist' %}
+            <span class="status-badge status-waitlist">Waitlist</span>
+            <div class="waitlist-date">{{ match.available_from_date }}</div>
+            {% else %}
+            <span class="status-badge status-closed">Closed</span>
+            <div class="match-percentage">{{ match.match_percentage }}%</div>
+            {% endif %}
+            
+            <!-- Book Now button -->
+            <div class="book-now-container">
+                <a href="https://my.zandahealth.com/Appointments" target="_blank" class="btn btn-book-now">Book Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<div class="mt-4">
+    <a href="{{ url_for('triage.index') }}" class="btn btn-primary">New Search</a>
+</div>
+{% endif %}
+{% endblock %}
+

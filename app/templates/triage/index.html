@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Triage Tool - Psychology Clinic{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="content-card">
+            <h1 class="card-title">Triage Tool</h1>
+            <p class="card-subtitle">Find suitable clinicians based on client needs</p>
+            
+            <form action="{{ url_for('triage.search') }}" method="post" id="triageForm" class="triage-form">
+                <div>
+                    <label for="age_group" class="form-label">Age Group</label>
+                    <select class="form-select" id="age_group" name="age_group" required>
+                        <option value="" selected disabled>Select</option>
+                        {% for age in age_groups %}
+                        <option value="{{ age.id }}">{{ age.label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="presentation" class="form-label">Presentation</label>
+                    <input type="text" class="form-control" id="presentation" name="presentation" placeholder="Enter presentation" required autocomplete="off">
+                </div>
+                
+                <div>
+                    <label for="funding_source" class="form-label">Funding Source</label>
+                    <select class="form-select" id="funding_source" name="funding_source" required>
+                        <option value="" selected disabled>Select</option>
+                        {% for funding in funding_sources %}
+                        <option value="{{ funding.id }}">{{ funding.label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="location" class="form-label">Location</label>
+                    <select class="form-select" id="location" name="location" required>
+                        <option value="" selected disabled>Select</option>
+                        {% for location in locations %}
+                        <option value="{{ location }}">{{ location }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Find Matching Clinicians</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="content-card">
+            <h2 class="card-title">Instructions</h2>
+            <p>Use the search form to identify clinicians suited to client requirements.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Autocomplete for presentation field
+        $("#presentation").autocomplete({
+            source: function(request, response) {
+                $.getJSON("{{ url_for('triage.api_presentations') }}", {
+                    q: request.term
+                }, function(data) {
+                    response(data);
+                });
+            },
+            minLength: 2,
+            select: function(event, ui) {
+                $("#presentation").val(ui.item.value);
+                return false;
+            }
+        });
+    });
+</script>
+{% endblock %}
+

@@ -1,0 +1,124 @@
+{% extends 'base_minimal.html' %}
+
+{% block title %}Login - Triage Tool{% endblock %}
+
+{% block content %}
+<div class="login-page">
+    <div class="login-card">
+        <div class="text-center mb-4">
+            <div class="text-center mb-3">
+                <img src="{{ url_for('static', filename='img/LogoSCPC.jpg') }}" alt="Logo" class="login-logo">
+            </div>
+            
+            <h1 class="login-title">Staff Access Portal</h1>
+            <p class="login-subtitle">Secure access to the Cold Call Triage Assistant</p>
+        </div>
+        
+        <form method="post">
+            <div class="mb-4">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required autofocus>
+            </div>
+            
+            <div class="mb-4 password-field">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <span class="password-dot"></span>
+            </div>
+            
+            <div class="d-grid gap-2 mb-4">
+                <button type="submit" class="btn btn-primary btn-lg">Sign In to Triage System</button>
+            </div>
+            
+            <p class="login-footer">
+                This system is for authorized personnel only.<br>
+                All access is logged and monitored.
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: #B5E2D7; /* Mint/turquoise background */
+    }
+    
+    .login-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .login-card {
+        background-color: white;
+        border-radius: 20px;
+        padding: 40px;
+        width: 100%;
+        max-width: 450px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+    
+    .login-logo {
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    
+    .login-title {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    
+    .login-subtitle {
+        color: #666;
+        margin-bottom: 30px;
+    }
+    
+    .form-control {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        font-size: 1rem;
+    }
+    
+    .password-field {
+        position: relative;
+    }
+    
+    .password-dot {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        background-color: #777;
+        border-radius: 50%;
+    }
+    
+    .btn-primary {
+        background-color: #4DD6C1;
+        border-color: #4DD6C1;
+        padding: 15px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+    }
+    
+    .btn-primary:hover {
+        background-color: #3AA996;
+        border-color: #3AA996;
+    }
+    
+    .login-footer {
+        font-size: 0.85rem;
+        color: #777;
+        text-align: center;
+        margin-top: 30px;
+        line-height: 1.5;
+    }
+</style>
+{% endblock %}
+

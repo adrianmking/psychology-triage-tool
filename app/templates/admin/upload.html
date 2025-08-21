@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Spreadsheet - Sunshine Coast Psychology Clinic{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1>Upload Clinician Spreadsheet</h1>
+        <p class="lead">Upload the master spreadsheet containing clinician information.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Upload Spreadsheet</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label for="file" class="form-label">Select Excel File</label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".xlsx, .xls" required>
+                        <div class="form-text">Please upload an Excel file (.xlsx or .xls) containing the clinician data.</div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle"></i> Important Information</h5>
+                        <p>Uploading a new spreadsheet will replace the existing clinician database. Make sure the spreadsheet follows the required format.</p>
+                        <p>The spreadsheet should contain the following columns:</p>
+                        <ul>
+                            <li>clinician_name - Name of the clinician</li>
+                            <li>primary_location - Clinic location</li>
+                            <li>age_* columns - Age groups treated</li>
+                            <li>*_treats columns - Presentations treated</li>
+                            <li>funding columns (mhcp, ndis, etc.) - Accepted funding sources</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Upload Spreadsheet</button>
+                        <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Instructions</h5>
+            </div>
+            <div class="card-body">
+                <h6><i class="fas fa-check-circle text-success"></i> Spreadsheet Requirements</h6>
+                <ul>
+                    <li>Must be in Excel format (.xlsx or .xls)</li>
+                    <li>Must contain all required columns</li>
+                    <li>Column names should match the expected format</li>
+                    <li>Maximum file size: 16MB</li>
+                </ul>
+                
+                <h6 class="mt-4"><i class="fas fa-exclamation-triangle text-warning"></i> After Upload</h6>
+                <p>After uploading, you can:</p>
+                <ul>
+                    <li>Manage individual clinician availability</li>
+                    <li>Use the triage tool to search for matching clinicians</li>
+                    <li>Upload a new spreadsheet to update the database</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
