@@ -120,10 +120,10 @@ def search_clinicians(age_group, presentation, funding_source, location):
     # Use the saved availability setting
     if availability_settings[clinician_name]["status"] == "Closed":
         continue
-    else:
-            # Fall back to spreadsheet availability if no saved setting
-            if clinician.get("availability_status") == "Unavailable" or clinician.get("availability_status") == "Closed":
-            continue
+else:
+    # Fall back to spreadsheet availability if no saved setting
+    if clinician.get("availability_status") == "Unavailable" or clinician.get("availability_status") == "Closed":
+        continue
 
             
             # STRICT LOCATION MATCHING: If a specific location is selected, only show clinicians from that location
