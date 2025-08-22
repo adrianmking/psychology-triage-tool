@@ -102,9 +102,9 @@ def search_clinicians(age_group, presentation, funding_source, location):
         # Filter clinicians based on criteria
         matches = []
         # Load saved availability settings
-availability_settings = {}
-availability_path = os.path.join(current_app.config['UPLOAD_FOLDER'], 'availability.json')
-if os.path.exists(availability_path):
+        availability_settings = {}
+        availability_path = os.path.join(current_app.config['UPLOAD_FOLDER'], 'availability.json')
+        if os.path.exists(availability_path):
     try:
         with open(availability_path, 'r') as f:
             availability_settings = json.load(f)
@@ -113,10 +113,10 @@ if os.path.exists(availability_path):
 
         for clinician in clinicians:
            # Skip if clinician is closed (marked as Unavailable or Closed)
-clinician_name = clinician.get("clinician_name")
+    clinician_name = clinician.get("clinician_name")
     
-# Check if we have saved availability settings for this clinician
-if clinician_name in availability_settings:
+    # Check if we have saved availability settings for this clinician
+    if clinician_name in availability_settings:
     # Use the saved availability setting
     if availability_settings[clinician_name]["status"] == "Closed":
         continue
