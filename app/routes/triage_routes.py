@@ -90,7 +90,7 @@ def index():
     )
 
 @bp.route("/search", methods=["POST"])
-def search_clinicians():
+def search():
     age_group = request.form.get("age_group")
     presentation = request.form.get("presentation")
     funding_source = request.form.get("funding_source")
