@@ -76,7 +76,7 @@ def get_all_funding_sources():
         return []
 
 @bp.route("/")
-def triage_tool():
+def index():
     presentations = get_all_presentations()
     age_groups = get_all_age_groups()
     funding_sources = get_all_funding_sources()
