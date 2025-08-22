@@ -101,11 +101,30 @@ def search_clinicians(age_group, presentation, funding_source, location):
         
         # Filter clinicians based on criteria
         matches = []
-        
+        # Load saved availability settings
+availability_settings = {}
+availability_path = os.path.join(current_app.config['UPLOAD_FOLDER'], 'availability.json')
+if os.path.exists(availability_path):
+    try:
+        with open(availability_path, 'r') as f:
+            availability_settings = json.load(f)
+    except:
+        pass  # If there's an error loading the file, just use empty settings
+
         for clinician in clinicians:
-            # Skip if clinician is closed (marked as Unavailable or Closed)
-            if clinician.get('availability_status') == 'Unavailable' or clinician.get('availability_status') == 'Closed':
-                continue
+           # Skip if clinician is closed (marked as Unavailable or Closed)
+clinician_name = clinician.get("clinician_name")
+    
+# Check if we have saved availability settings for this clinician
+if clinician_name in availability_settings:
+    # Use the saved availability setting
+    if availability_settings[clinician_name]["status"] == "Closed":
+        continue
+else:
+    # Fall back to spreadsheet availability if no saved setting
+    if clinician.get("availability_status") == "Unavailable" or clinician.get("availability_status") == "Closed":
+        continue
+
             
             # STRICT LOCATION MATCHING: If a specific location is selected, only show clinicians from that location
             if location != "Flexible" and clinician.get('primary_location') != location:
